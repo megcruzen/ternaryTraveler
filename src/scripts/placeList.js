@@ -11,6 +11,7 @@ const placeList = {
 
         // Create container, title, etc.
         let output = document.querySelector("#output");
+        output.innerHTML = "";
 
         let title = document.createElement("h1");
         title.textContent = "The Ternary Traveler";

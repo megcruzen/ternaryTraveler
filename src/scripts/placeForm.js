@@ -1,5 +1,7 @@
 // Creates form to save a new place item to database
 
+import eventListeners from "./eventListeners"
+
 const placeForm = {
 
     buildForm() {
@@ -66,6 +68,9 @@ const placeForm = {
         saveBtn.textContent = "Save Place";
         saveBtn.setAttribute("class", "save_new_place");
 
+        // Attach event listener to button, to POST to database
+        saveBtn.addEventListener("click", eventListeners.postPlace);
+
         // Append each field/button to form container
 
         formContainer.appendChild(name);
@@ -75,27 +80,6 @@ const placeForm = {
         formContainer.appendChild(saveBtn);
 
         output.appendChild(formContainer);
-
-    },
-
-    postPlace() {
-
-        // Get user input (value of each field)
-        let inputPlaceName = document.querySelector("#place_name").value;
-        let inputPlaceDescription = document.querySelector("#place_description").value;
-        let inputPlaceCost = document.querySelector("#place_cost").value;
-        let inputPlaceCity = document.querySelector("#place_city").value;
-
-        // Create new object with correct DB structure to represent a single place item:
-
-        let placeToSave = {
-            name: inputPlaceName,
-            description: inputPlaceDescription,
-            cost: inputPlaceCost,
-            review: "",
-            city: inputPlaceCity
-          }
-
     }
 
 }

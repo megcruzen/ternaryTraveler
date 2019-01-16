@@ -1,6 +1,7 @@
 // Creates each place item that will be appended to DOM
 
-// import placeList from "./placeList"
+import placeList from "./placeList"
+import placeData from "./placeData"
 
 const placeItem = {
 
@@ -43,12 +44,25 @@ const placeItem = {
         editBtn.setAttribute("class", "edit_place");
         // GET
         // .then PUT
+        editBtn.addEventListener("click", () => {
+            let placeId = placeObj.id;
+            placeData.getPlace(placeId)
+            .then(response => {
+                placeEditForm.createAndAppendForm(placeId, response)
+            })
+        })
 
         // delete button
         let deleteBtn = document.createElement("button");
         deleteBtn.textContent = "Delete";
         deleteBtn.setAttribute("class", "delete_place");
-        // .then (call placeList.buildList to refresh DOM)
+        deleteBtn.addEventListener("click", () => {
+            let placeId = placeObj.id;
+            placeData.deletePlace(placeId)
+            .then(() => {
+                placeList.buildList()
+            })
+        })
 
         // Add "Edit" and "Delete" buttons to button holder
         buttonHolder.appendChild(editBtn);
