@@ -1,3 +1,4 @@
-// import placeList from "./placeList"
+import placeList from "./placeList";
 
-// calls placeList function
+// Calls placeList.buildList function
+placeList.buildList();
