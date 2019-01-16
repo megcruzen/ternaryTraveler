@@ -1,0 +1,37 @@
+
+/* FORM */
+
+#form_container {
+    border: 1px solid #111;
+    padding: 10px;
+}
+
+#form_container h3 {
+    margin: 0px;
+    padding-bottom: 10px;
+}
+
+#form_container fieldset {
+    border: none;
+    margin: 0;
+    padding: 0px 0px 10px 0px;
+}
+
+#form_container label {
+    float: left;
+    width: 90px;
+}
+
+/* LIST */
+
+.place_section h3, p {
+    margin: 0;
+}
+
+.place_section {
+    padding: 20px 0px;
+}
+
+.place_section button {
+    margin-right: 10px;
+}
