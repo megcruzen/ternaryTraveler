@@ -68,11 +68,11 @@ const placeItem = {
         deleteBtn.textContent = "Delete";
         deleteBtn.setAttribute("class", "delete_place");
         deleteBtn.addEventListener("click", () => {
-            let placeId = placeObj.id;
-            placeData.deletePlace(placeId)
-            .then(() => {
-                placeList.buildList()
-            })
+            if (confirm("Are you sure you want to delete this entry?")) {
+                let placeId = placeObj.id;
+                placeData.deletePlace(placeId)
+                .then(() => { placeList.buildList()})
+            }
         })
 
         // Add "Edit" and "Delete" buttons to button holder
