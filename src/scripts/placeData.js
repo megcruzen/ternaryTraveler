@@ -31,7 +31,7 @@ const placeData = {
 
     // PUT
     getPlace(placeId) {
-        return fetch(`http://localhost:8088/places/${placeId}`)
+        return fetch(`http://localhost:8088/places/${placeId}?_expand=cityName`)
         .then(response => response.json())
     },
 
