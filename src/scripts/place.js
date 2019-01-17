@@ -2,6 +2,7 @@
 
 import placeList from "./placeList"
 import placeData from "./placeData"
+import placeEditForm from "./placeEditForm"
 
 const placeItem = {
 
@@ -11,8 +12,8 @@ const placeItem = {
 
         // Create container for each item
         let placeSection = document.createElement("section");
-        // ex: foodArticle.setAttribute("id", `food--${foodObject.id}`)
         placeSection.setAttribute("class", "place_section");
+        placeSection.setAttribute("id", `place--${placeObj.id}`)
 
         // Name
         let placeName = document.createElement("h3");
@@ -25,34 +26,44 @@ const placeItem = {
 
         // Cost
         let placeCost = document.createElement("p");
-        placeCost.textContent = placeObj.cost;
+        if (placeObj.cost === "0" || placeObj.cost === "FREE") {
+            let costDisplay = `Cost: ${placeObj.cost}`;
+            placeCost.textContent = costDisplay;
+        }
+        else {
+            let costDisplay = `Cost: $${placeObj.cost}`;
+            placeCost.textContent = costDisplay;
+        }
 
         // Review
         let placeReview = document.createElement("p");
-        placeReview.textContent = placeObj.review;
+        let reviewDisplay = `Review: ${placeObj.review}`;
+        placeReview.textContent = reviewDisplay;
 
         // City
         let placeCity = document.createElement("p");
-        placeCity.textContent = placeObj.cityName.name;
+        let cityDisplay = `City: ${placeObj.cityName.name}`;
+        placeCity.textContent = cityDisplay;
 
         // Add button section
         let buttonHolder = document.createElement("div");
+        buttonHolder.setAttribute("class", "button_holder");
 
-        // edit button
+        // Edit button
         let editBtn = document.createElement("button");
         editBtn.textContent = "Edit";
         editBtn.setAttribute("class", "edit_place");
-        // GET
-        // .then PUT
         editBtn.addEventListener("click", () => {
-            let placeId = placeObj.id;
+            let sectionId = event.target.parentNode.parentNode.id;
+            let placeId = sectionId.split("--")[1];
+            console.log(placeId);
             placeData.getPlace(placeId)
             .then(response => {
-                placeEditForm.createAndAppendForm(placeId, response)
+                placeEditForm.buildEditForm(placeId, response)
             })
         })
 
-        // delete button
+        // Delete button
         let deleteBtn = document.createElement("button");
         deleteBtn.textContent = "Delete";
         deleteBtn.setAttribute("class", "delete_place");
