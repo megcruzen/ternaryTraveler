@@ -1,6 +1,7 @@
 // Creates form to save a new place item to database
 
 import eventListeners from "./eventListeners"
+import placeData from "./placeData";
 
 const placeForm = {
 
@@ -54,12 +55,24 @@ const placeForm = {
         let cityInput = document.createElement("select");
         cityInput.setAttribute("id", "place_city");
         cityInput.setAttribute("name", "place_city");
-        let cityOptions = `
-            <option value="1">Los Angeles</option>
-            <option value="2">San Francisco</option>
-            <option value="3">Toronto</option>
-        `
-        cityInput.innerHTML = cityOptions;
+
+        // fetch cities and build options
+        placeData.getCities()
+        .then(cities => {
+            cities.forEach(city => {
+                let cityOption = document.createElement("option");
+                cityOption.textContent = city.name;
+                cityOption.setAttribute("value", city.id);
+                cityInput.appendChild(cityOption);
+            })
+        })
+
+        // let cityOptions = `
+        //     <option value="1">Los Angeles</option>
+        //     <option value="2">San Francisco</option>
+        //     <option value="3">Toronto</option>
+        // `
+        // cityInput.innerHTML = cityOptions;
         city.appendChild(cityLabel);
         city.appendChild(cityInput);
 

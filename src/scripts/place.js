@@ -37,8 +37,14 @@ const placeItem = {
 
         // Review
         let placeReview = document.createElement("p");
-        let reviewDisplay = `Review: ${placeObj.review}`;
-        placeReview.textContent = reviewDisplay;
+        if (placeObj.review === "") {
+            let reviewDisplay = "Review: No review yet.";
+            placeReview.textContent = reviewDisplay;
+        }
+        else {
+            let reviewDisplay = `Review: ${placeObj.review}`;
+            placeReview.textContent = reviewDisplay;
+        }
 
         // City
         let placeCity = document.createElement("p");
@@ -56,7 +62,7 @@ const placeItem = {
         editBtn.addEventListener("click", () => {
             let sectionId = event.target.parentNode.parentNode.id;
             let placeId = sectionId.split("--")[1];
-            console.log(placeId);
+            // console.log(placeId);
             placeData.getPlace(placeId)
             .then(response => {
                 placeEditForm.buildEditForm(placeId, response)
