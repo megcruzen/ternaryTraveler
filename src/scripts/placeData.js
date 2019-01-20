@@ -2,9 +2,15 @@
 
 const placeData = {
 
-    // GET
+    // GET places
     getPlaces() {
         return fetch("http://localhost:8088/places?_expand=cityName")
+        .then(response => response.json())
+    },
+
+    // GET cities
+    getCities() {
+        return fetch("http://localhost:8088/cityNames")
         .then(response => response.json())
     },
 
