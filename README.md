@@ -4,8 +4,8 @@
 As a user, I should be able to enter in an point of interest, and associate it with a place.
 
 ### Acceptance Criteria
-**Given** a user has already has points of interests
-**When** the user opens the application
+**Given** a user has already has points of interests<br />
+**When** the user opens the application<br />
 **Then** all points of interests should be displayed with their name, description, cost, review if it's not blank and the place it is located
 
 **Given** a user wants to keep track of a new point of interest<br />
